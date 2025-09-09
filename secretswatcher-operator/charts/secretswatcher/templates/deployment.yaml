@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secretswatcher-operator
+  namespace: { { .Values.namespace } }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secretswatcher-operator
+  template:
+    metadata:
+      labels:
+        app: secretswatcher-operator
+    spec:
+      serviceAccountName: secretswatcher-operator
+      containers:
+        - name: secretswatcher-operator
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: { { .Values.image.pullPolicy } }
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace

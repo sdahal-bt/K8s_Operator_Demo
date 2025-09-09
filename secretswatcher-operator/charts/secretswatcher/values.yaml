@@ -1,0 +1,6 @@
+image:
+  repository: secretswatcher-operator
+  tag: latest
+  pullPolicy: IfNotPresent
+
+namespace: secretswatcher

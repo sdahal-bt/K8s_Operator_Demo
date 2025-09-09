@@ -1,0 +1,5 @@
+apiVersion: v2
+name: secretswatcher
+description: A demo operator that watches and rotates Kubernetes secrets
+version: 0.1.0
+appVersion: "0.1.0"
