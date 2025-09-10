@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: secretswatcher-operator
-  namespace: { { .Values.namespace } }
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
       containers:
         - name: secretswatcher-operator
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: { { .Values.image.pullPolicy } }
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: WATCH_NAMESPACE
               valueFrom:
